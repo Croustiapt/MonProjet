@@ -1,0 +1,45 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}- Ajouter Voiture{% endblock %}
+
+{% block body %}
+
+<h3>Ajout de Vehicule</h3>
+
+<div class="well">
+
+{{ form_start(form,{'attr':{'class': 'form-horizontal'}}) }}
+
+{{form_errors(form)}}
+
+<div class="form-group">
+  {{form_label(form.nom,"Nom du Véhicule",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.nom)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.model,"Modèle",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.model)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.model,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.configuration,"Configuration du Véhicule",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.configuration)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.configuration,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+{{form_rest(form)}}
+
+{{form_end(form)}}
+{% endblock %}

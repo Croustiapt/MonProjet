@@ -1,0 +1,68 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}- Nos Vehicules{% endblock %}
+
+{% block body %}
+
+
+  <script >
+$( document ).ready(function() {
+
+  $('#formulaireVoiture').submit(function() {
+      var carChoice = $(".item.active").children().attr('alt');
+      $('#voiture').val(carChoice);
+      return true;
+     });
+
+ });
+
+
+  </script>
+
+
+<div id="myCarousel" class="carousel slide" class="img-responsive" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active" id="1">
+      <img src="{{asset('i20.png')}}" style="width:70%" style="height :100%" class="img-responsive" alt="i20">
+  </div>
+  <div class="item" id="2">
+  	<img src="{{asset('i10t.png')}}" style="width:70%" style="height :100%" class="img-responsive" alt="i10t">
+  </div>
+   <div class="item" id="3">
+  	<img src="{{asset('Sandero.png')}}" style="width:80%" style="height :100%" class="img-responsive" alt="Sandero">
+</div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Choisissez votre vehicule</h1>
+          <p></p>
+          <p>
+            <form id="formulaireVoiture" method="POST" action="">
+              <input id="voiture" name="voiture" type="hidden" value="carChoice" required/>
+              <button type="submit" id="Reserver" class="btn btn-lg btn-primary">Reserver</button>
+            </form>
+        </div>
+      </div>
+
+    <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button"data-slide="prev">
+    <span class="icon-prev" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="icon-next" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>  
+</div>
+</div>
+{% if is_granted('ROLE_USER') %}
+  <li><a href="{{ path('locanor_site_ModifierVehicule')}}">Modifier Nos Vehicules</a></li>
+</form>
+{% endif %}
+{% endblock %}

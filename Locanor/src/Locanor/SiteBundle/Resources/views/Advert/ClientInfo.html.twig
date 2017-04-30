@@ -1,0 +1,14 @@
+
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Informations vous concernant</h2>
+
+  {{ include("LocanorSiteBundle:Advert:form.html.twig") }}
+
+  <p>
+    Attention : ce formulaire servira pour la reservation et l'envoi d'email a Locanor.
+  </p>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- PARTIE PICKMEUP -->
+<link rel="stylesheet" href="{{ asset('pickmeup.css') }}">
+<script src="{{ asset('pickmeup.js') }}"></script>
+<link rel="stylesheet" media="screen" type="text/css" href="http://nazar-pc.github.io/PickMeUp/demo/demo.css">
+
+
+<style>
+body{
+	background: #f0f8ff;
+}
+</style>
+    <meta charset="utf-8">
+    <title>{% block title %} Locanor {% endblock %}</title>
+  </head>
+  <body>
+  	<div class="navbar-wrapper">
+  <div class="container">
+    <div class="navbar navbar-inverse navbar-static-top">
+      
+        <div class="navbar-header">
+	    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </a>
+        <a class="navbar-brand" href="{{ path('locanor_site_homepage')}}">Locanor</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ path('locanor_site_homepage')}}">Home</a></li>
+            <li><a href="{{ path('locanor_site_Categories')}}">Nos vehicules</a></li>
+            <li><a href="{{ path('locanor_site_BonPlans')}}">BonPlans</a></li>
+            <li><a href="{{ path('locanor_site_NousTrouver')}}">Nous Trouver</a></li>
+            <li><a href="{{path('locanor_site_About')}}">About</a></li>
+
+            <li><a
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    Connecté en tant que {{ app.user.username }}
+    -
+    <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+{% else %}
+    <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+{% endif %}</a></li>
+           </ul>
+             </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+    {% block body %}
+    {% endblock %}
+
+  </body>
+<blockquote class="blockquote blockquote-reverse">
+
+</blockquote>
+  
+ </html>

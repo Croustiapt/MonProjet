@@ -1,0 +1,109 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}- Acceuil{% endblock %}
+
+{% block body %}
+
+<script>
+addEventListener('DOMContentLoaded', function () {
+    pickmeup.defaults.locales['en'] = {
+      days: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+      daysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+      daysMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ven', 'Sam'],
+      months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+      monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec']
+    }
+
+    var element = document.getElementById('change');
+    var elementer = document.getElementById('update');
+
+    pickmeup('.dateDebut', {
+      min : new Date,
+      hide_on_select : true,
+      default_date : false,
+      class_name: "pickerDebut",
+      calendars : 2
+    });
+
+
+    element.addEventListener('pickmeup-change', function (e) {
+      
+      if ( $( ".pickerFin" ).length ) {
+
+        pickmeup('.dateFin').destroy();
+      }
+
+      var newDate = e.detail.formatted_date; 
+
+      
+      pickmeup('.dateFin', {
+        min : newDate,
+        date : newDate,
+        hide_on_select : true,
+        default_date : false,
+        class_name: "pickerFin",
+
+        calendars : 2
+      });
+
+      pickmeup('.dateFin').set_date(newDate);
+      pickmeup('.dateFin').update();
+  
+ 
+    });
+
+  });
+
+</script>
+
+<form method="POST" action="http://localhost/locanor/web/app_dev.php/">
+  <div id="myCarousel" class="carousel slide" >
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active">
+              <!--<img id="Logo" src="{{asset('LOCANOR_LOGO.png')}}">-->
+        <img id="background" src="{{asset('IMG_4031.JPG')}}" class="img-responsive">
+          
+        <div class="container">
+
+             <div class="header-text hidden-xs">
+              <div class="col-md-12 text-center">
+              </div>
+            </div>
+
+          <div class="carousel-caption">
+
+            <p>
+              <h4>
+                <input name="dateDebutLocation" placeholder="Jour de début de location..." type="text" class="dateDebut" id="change" required style="color:black;">
+               <select name="heureDebutLocation" style="color:black">
+                   {% for i in  8..18 %}
+                        <option value={{ i }}>{{ i }} H</option>
+                    {% endfor %}
+               </select>
+             </h4>
+
+             <h4>
+                <input name="dateFinLocation" placeholder="Jour de fin de location..." type="text" id="update" class="dateFin" required style="color:black;">
+                <select name="heureFinLocation" style="color:black">
+                    {% for i in  8..18 %}
+                        <option value={{ i }}>{{ i }} H</option>
+                    {% endfor %}
+                </select>
+              </h4>
+            </p>
+
+            <h1 style="color:black" >Locanor louer sans depenser de l'or</h1>
+            <p></p>
+            <button type="submit" class="btn btn-lg btn-primary" href=""><i class="glyphicon glyphicon-menu-right"></i> Réserver maintenant !</a>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

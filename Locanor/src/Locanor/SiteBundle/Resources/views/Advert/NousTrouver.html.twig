@@ -1,0 +1,56 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}- Nous Trouver{% endblock %}
+
+{% block body %}
+
+	 <div id="Coordonnees">
+    <h1 class="text-center">Coordonnées</h1>
+    <address class="text-center">
+    	<strong> 1 rue des filaos Moulin à vent</strong>
+    	  <br> 97231 Le Robert<br>
+    	  <abbr>Portable:</abbr>+596 696 27 69 27
+
+    </address>
+</div>
+    <style>
+      html, body {
+      	background: #f0f8ff;
+        height: 70%;
+        padding: 0;
+      }
+
+      #map {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+var map;
+function initMap() {
+
+  var ma_position ={lat:14.6769019 , lng:-60.945279400000004};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: ma_position,
+    zoom: 12
+  });
+
+  var marker = new google.maps.Marker({
+
+  	position: ma_position,
+  	map: map 
+  });
+}
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKn-oIsbSejCutB1KxTCIL1Vl88vqhwRM&callback=initMap"
+        async defer></script>
+  </body>
+</html>
+{% endblock %}

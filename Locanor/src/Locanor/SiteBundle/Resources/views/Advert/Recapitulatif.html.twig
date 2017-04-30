@@ -1,0 +1,44 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}- Récapitulatif{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center">Récapitulatif de votre Réservation</h1>
+    <div class="">
+        <dl class="dl-horizontal">
+            <dt>Nom: </dt>
+            <dd>{{ User.name }}</dd>
+
+            <dt>Prenom: </dt>
+            <dd>{{ User.prenom }}</dd>
+
+            <dt>Adresse: </dt>
+            <dd>{{ User.adresse }}</dd>
+            <dd>{{ User.codepostal}} {{User.ville}} {{User.pays}}</dd>
+
+            <dt>Email: </dt>
+            <dd>{{ User.email }}</dd>
+
+            <dt>Téléphone: </dt>
+            <dd>{{ User.telephone}}</dd>
+        </dl>
+    </div>
+ <div>
+    <h2 class="text-center">Véhicule</h2>
+    <img src="{{asset(''~User.voiture~'.png')}}" style="width:70%" style="height :100%" class="img-responsive">
+    <dl class="dl-horizontal">
+            <dt>Debut Location: </dt>
+            <dd>{{ User.dateDebut }} à {{ User.heuredebut}}H</dd>
+
+            <dt>Fin de Location: </dt>
+            <dd>{{ User.dateFin }} à {{ User.heurefin}}H</dd>
+            <dt>Montant total:</dt>
+            <dd>{{User.MontantLoc}} €</dd>
+ </div>
+<div class="text-center">
+	<button type="button" class="btn btn-danger" onclick="history.back()">Retour</button> 
+  <a id="Success" class="btn btn-success" href="{{ path('locanor_site_Success',{'Currentemail': User.email})}}">Valider</a>
+</div>
+
+{% endblock %}

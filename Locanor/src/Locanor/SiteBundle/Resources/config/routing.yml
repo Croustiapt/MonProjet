@@ -1,0 +1,63 @@
+locanor_site_homepage:
+    path:     /
+    defaults: {_controller: LocanorSiteBundle:Advert:Home }
+
+
+locanor_site_Reservation:
+    path:    /Reservation/{dateDebutLocation}/{heureDebutLocation}/{dateFinLocation}/{heureFinLocation}
+    defaults: {_controller: LocanorSiteBundle:Advert:NosVehiculesC}
+
+locanor_site_About:
+    path:    /About
+    defaults: {_controller: LocanorSiteBundle:Advert:About}
+
+locanor_site_Categories:
+    path:    /Nos-Vehicules
+    defaults: {_controller: LocanorSiteBundle:Advert:NosVehicules}
+
+locanor_site_NousTrouver:
+    path:    /NousTrouver
+    defaults: {_controller: LocanorSiteBundle:Advert:NousTrouver}
+
+locanor_site_BonPlans:
+    path:    /BonPlans
+    defaults: {_controller: LocanorSiteBundle:Advert:BonPlans}
+
+locanor_site_Formulaire:
+    path:    /Renseignement/
+    defaults: {_controller: LocanorSiteBundle:Advert:Form}
+
+locanor_site_ModifierVehicule:
+    path:    /Modifier_Vehicule
+    defaults: {_controller: LocanorSiteBundle:Advert:Modifier_Vehicule}
+
+locanor_site_AjouterVehicule:
+    path:    /AjouterVehicule
+    defaults: {_controller: LocanorSiteBundle:Advert:addVehicule}
+
+locanor_site_Recapitulatif:
+    path:    /Recapitulatif/{Currentemail}
+    defaults: {_controller: LocanorSiteBundle:Advert:Recapitulatif}
+
+locanor_site_Success:
+    path:    /Success/{Currentemail}
+    defaults: {_controller: LocanorSiteBundle:Advert:Success}
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

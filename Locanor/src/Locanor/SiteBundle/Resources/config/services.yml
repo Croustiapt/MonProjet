@@ -1,0 +1,19 @@
+services:
+#    locanor_site.example:
+#        class: Locanor\SiteBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+
+    locanor_site.antispam:
+        class: Locanor\SiteBundle\Antispam\ComAntispam
+        arguments:
+            - "@mailer"
+            - 50
+        calls::
+          -[ setLocale, [%locale%] ]
+          
+    locanor_site.twig.antispam_extension:
+      class: Locanor\SiteBundle\Twig\AntispamExtension
+      arguments:
+        - "@Locanor_site.antispam"
+      tags:
+        - { name: twig.extension }

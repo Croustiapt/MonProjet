@@ -1,0 +1,97 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}- Formulaire{% endblock %}
+
+{% block body %}
+
+<div class="well">
+
+{{ form_start(form,{'attr':{'class': 'form-horizontal'}}) }}
+
+{{form_errors(form)}}
+
+<div class="form-group">
+  {{form_label(form.titre,"Titre",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.titre)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.titre,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+
+  {{form_label(form.name,"Nom",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.name)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.name,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.prenom,"Prénom",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.prenom)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.prenom,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+{{ form_row(form.datedenaissance) }}
+
+<div class="form-group">
+  {{form_label(form.adresse,"Adresse",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.adresse)}}
+  <div class="col-sm-3">
+    {{ form_widget(form.adresse,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.codepostal,"Code Postal",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.codepostal)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.codepostal,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.ville,"Ville",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.ville)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.ville,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.pays,"Pays",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.pays)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.pays,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.telephone,"Téléphone",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.telephone)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.telephone,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{form_label(form.email,"E-mail",{'label_attr':{'class': 'col-sm-2 control-label'}}) }}
+  {{form_errors(form.email)}}
+  <div class="col-sm-2">
+    {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+  </div>
+</div>
+
+
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+{{form_rest(form)}}
+
+{{form_end(form)}}
+
+</div>
+
+{% endblock %}

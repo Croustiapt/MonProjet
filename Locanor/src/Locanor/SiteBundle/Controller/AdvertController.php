@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
+
 class AdvertController extends Controller
 {
 
@@ -177,7 +178,7 @@ class AdvertController extends Controller
 
         */
 
-var_dump($CurrentUser->getEmail());
+var_dump($CurrentUser);
 
         $Currentvoiture=$CurrentUser->getVoiture();
         $CurrentDateDebut=date_create($CurrentUser->getDateDebut());
@@ -204,7 +205,44 @@ var_dump($CurrentUser->getEmail());
             }
             break;
 
+            case 'Logan':
+            if ($NbJoursLocation<=7) {
+              $prix= $NbJoursLocation*33;
+
+            }elseif ($NbJoursLocation<=8 && $NbJoursLocation<=15) {
+              $prix= $NbJoursLocation*32;
+
+            }elseif ($NbJoursLocation<=16 && $NbJoursLocation<=22) {
+              $prix= $NbJoursLocation*30;
+
+            }elseif ($NbJoursLocation<=22 && $NbJoursLocation<=30) {
+              $prix= $NbJoursLocation*26;
+
+            }elseif ($NbJoursLocation>30) {
+              $prix= $NbJoursLocation*25;
+
+            }
+            break;
+
             case 'i20':
+            if ($NbJoursLocation<=7) {
+              $prix = $NbJoursLocation*32;
+
+            }elseif ($NbJoursLocation<=8 && $NbJoursLocation<=15) {
+              $prix = $NbJoursLocation*30;
+
+            }elseif ($NbJoursLocation<=16 && $NbJoursLocation<=22) {
+              $prix = $NbJoursLocation*27;
+
+            }elseif ($NbJoursLocation<=22 && $NbJoursLocation<=30) {
+              $prix = $NbJoursLocation*25;
+
+            }elseif ($NbJoursLocation>30) {
+              $prix = $NbJoursLocation*24;
+            }
+            break;
+
+            case 'yaris':
             if ($NbJoursLocation<=7) {
               $prix = $NbJoursLocation*32;
 
@@ -273,16 +311,37 @@ var_dump($CurrentUser->getEmail());
          
          $message = \Swift_Message::newInstance()
          ->setSubject('Confirmation de Reservation Locanor')
-         ->setFrom('patricelotaut@gmail.com')
-         ->setTo('patricelotaut@gmail.com')
+         ->setFrom('contact@locanor-martinique.com')
+         ->setTo($Currentemail)
+         //->setBcc('sougner.claire@gmail.com')
+         ->attach(\Swift_Attachment::fromPath('LOCANOR_LOGO.png')  
+         ->setDisposition('inline'))
          ->setBody(
              $this->renderView('Emails\registration.html.twig',
               array('CurrentUser'=>$CurrentUser )),
              'text/html');
 
+
+
          $this->get('mailer')->send($message);
 
-var_dump($message);
+
+
+          $message2 = \Swift_Message::newInstance()
+         ->setSubject('Confirmation de Reservation Locanor')
+         ->setFrom('contact@locanor-martinique.com')
+         ->setTo('patricelotaut@gmail.com')
+         //->setBcc('sougner.claire@gmail.com')
+         ->attach(\Swift_Attachment::fromPath("voiture/".$CurrentUser->getvoiture().".png")  
+         ->setDisposition('inline'))
+         ->setBody(
+             $this->renderView('Emails\reservation.html.twig',
+              array('CurrentUser'=>$CurrentUser )),
+             'text/html');
+
+         $this->get('mailer')->send($message2);
+
+//var_dump($message2);
        }
 
        return $this->render('LocanorSiteBundle:Advert:Success.html.twig');
